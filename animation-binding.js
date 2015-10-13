@@ -30,12 +30,12 @@
 
         if (inital) {
           inital = false
-          element.classList.toggle(opts.class, on)
+          element.classList[on ? 'add' : 'remove'](opts.class)
           return
         }
 
         if (element.classList.contains(opts.class) !== on) {
-          element.classList.toggle(opts.class, on)
+          element.classList[on ? 'add' : 'remove'](opts.class)
           if (on) {
             element.classList.add(enterClass)
             element.classList.remove(exitClass)
@@ -44,7 +44,6 @@
             element.classList.add(exitClass)
           }
         }
-        element.classList.toggle(opts.class, on)
       }, null, { disposeWhenNodeIsRemoved: element })
     }
   }
