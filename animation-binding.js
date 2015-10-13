@@ -9,8 +9,8 @@
 })(function(ko) {
   var eventName = 'animationend'
   if (!window.requestAnimationFrame) {
-    if (window.webkitRequestAnimationFrame) eventName = 'webkitanimationend'
-    if (window.msRequestAnimationFrame) eventName = 'msanimationend'
+    if (window.webkitRequestAnimationFrame) eventName = 'webkitAnimationEnd'
+    if (window.msRequestAnimationFrame) eventName = 'msAnimationEnd'
   }
 
   ko.bindingHandlers.animation = {
