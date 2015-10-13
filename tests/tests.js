@@ -11,6 +11,22 @@ describe('knockout css3 animation', function() {
 
     toggle = ko.observable(initValue)
     ko.applyBindings(vm || { toggle: toggle }, testEl)
+  },
+  afterAnimation = function(fn, done) {
+    var eventName = 'animationend'
+    if (!window.requestAnimationFrame) {
+      if (window.webkitRequestAnimationFrame) eventName = 'webkitanimationend'
+      if (window.msRequestAnimationFrame) eventName = 'msanimationend'
+    }
+
+    testEl.addEventListener(eventName, function(e) {
+      try {
+        fn(e)
+        done()
+      } catch(e) {
+        done(e)
+      }
+    })
   }
 
   afterEach(function() {
@@ -54,10 +70,9 @@ describe('knockout css3 animation', function() {
 
   it('should remove the entering class after the animation is finished', function(done) {
     testSetup()
-    testEl.addEventListener('animationend', function() {
+    afterAnimation(function() {
       testEl.should.not.have.class('fade-enter')
-      done()
-    })
+    }, done)
     toggle(true)
     testEl.should.have.class('fade').and.class('fade-enter')
   })
@@ -71,10 +86,9 @@ describe('knockout css3 animation', function() {
 
   it('should remove the exiting class after the animation is finished', function(done) {
     testSetup(true)
-    testEl.addEventListener('animationend', function() {
+    afterAnimation(function() {
       testEl.should.not.have.class('fade-exit').and.class('fade')
-      done()
-    })
+    }, done)
     toggle(false)
   })
 

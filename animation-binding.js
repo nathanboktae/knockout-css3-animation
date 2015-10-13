@@ -7,6 +7,11 @@
     factory(ko)
   }
 })(function(ko) {
+  var eventName = 'animationend'
+  if (!window.requestAnimationFrame) {
+    if (window.webkitRequestAnimationFrame) eventName = 'webkitanimationend'
+    if (window.msRequestAnimationFrame) eventName = 'msanimationend'
+  }
 
   ko.bindingHandlers.animation = {
     init: function(element, valueAccessor) {
@@ -15,7 +20,7 @@
           exitClass = opts.exit || opts.class + '-exit',
           inital = true
 
-      element.addEventListener('animationend', function() {
+      element.addEventListener(eventName, function() {
         element.classList.remove(enterClass)
         element.classList.remove(exitClass)
       })
