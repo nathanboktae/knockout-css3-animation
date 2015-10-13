@@ -25,9 +25,6 @@ module.exports = function(grunt) {
             version: "8.2"
           }, {
             browserName:"safari",
-            version: "9"
-          }, {
-            browserName:"safari",
             version: "8"
           }, {
             browserName:"android",
@@ -35,7 +32,7 @@ module.exports = function(grunt) {
             version: "4.0"
           }, {
             browserName: 'googlechrome',
-            platform: 'linux'
+            platform: 'win8'
           }, {
             browserName: 'firefox',
             platform: 'WIN7',
@@ -44,7 +41,7 @@ module.exports = function(grunt) {
             platform: 'WIN8.1',
             version: '11'
           }],
-          testname: 'frypan-knockout-grid tests',
+          testname: 'knockout-css3-animation tests',
           tags: [process.env.TRAVIS_BRANCH || 'local']
         }
       }
