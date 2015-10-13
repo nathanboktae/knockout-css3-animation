@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Knockout CSS3 Animation Tests</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+  <style>
+    .animation {
+      width: 20px;
+      height: 20px;
+      border: 1px solid silver;
+      margin-right: 1em;
+      text-align: center;
+      font-size: 18px;
+      opacity: 0.5;
+    }
+    .animation.fade, .animation.fade-exit {
+      opacity: 1;
+    }
+    .animation.fade-enter {
+      animation: fadein 10ms linear;
+    }
+    .animation.fade-exit {
+      animation: fadeout 10ms linear;
+    }
+
+    @keyframes fadein {
+      0% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeout {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
+  <script src="../node_modules/chai-dom/chai-dom.js"></script>
+
+  <div id="mocha"></div>
+
+  <script>
+    mocha.ui('bdd')
+    mocha.timeout(4000)
+    var should = chai.should()
+    chai.config.includeStack = true
+  </script>
+
+  <script src="../node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+  <script src="../animation-binding.js"></script>
+  <script src="tests.js"></script>
+
+  <script>
+    if ('callPhantom' in window) {
+      mocha.run()
+    } else {
+      window.onload = function() {
+        var runner = mocha.run(),
+            tests = []
+        runner.on('end', function(){
+          window.global_test_results = {
+            passed: runner.stats.passes,
+            failed: runner.stats.failures,
+            total: runner.stats.tests,
+            duration: runner.stats.duration,
+            tests: tests
+          }
+        })
+
+        runner.on('pass', function(test) {
+          tests.push({
+            name: test.fullTitle(),
+            result: true,
+            message: test.duration + 'ms'
+          })
+        })
+
+        runner.on('fail', function (test, err) {
+          tests.push({
+            name: test.fullTitle(),
+            result: false,
+            duration: test.duration,
+            message: (err.message || '<no message>') + ': ' + err.stack
+          })
+        })
+      }
+    }
+  </script>
+</body>
+</html>

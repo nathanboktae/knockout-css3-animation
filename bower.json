@@ -1,0 +1,30 @@
+{
+  "name": "knockout-css3-animation",
+  "main": "animation-binding.js",
+  "homepage": "https://github.com/nathanboktae/knockout-css3-animation",
+  "authors": [
+    "Nathan Black <nathan@nathanblack.org>"
+  ],
+  "description": "A Knockout binding for easily animating elements via CSS3 animations",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "css3",
+    "animation",
+    "animate",
+    "knockout",
+    "knockout-plugin",
+    "knockout-custom-binding"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "Gruntfile.js",
+    "tests",
+    "example.html"
+  ]
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Knockout CSS3 Animation Example</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link href='https://fonts.googleapis.com/css?family=Oxygen:400,700,300' rel='stylesheet' type='text/css'>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, h1, h2, div {
+      font-family: "Oxygen", Arial;
+    }
+    a, a:visited {
+      color: indianred;
+      text-decoration: none;
+    }
+    div.squares {
+      border: 1px solid black;
+      padding: 8px;
+      display: flex;
+    }
+    .square {
+      flex: 1 1 auto;
+      width: 80px;
+      height: 80px;
+      border: 1px solid silver;
+      margin-right: 1em;
+      padding: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .square.grow, .square.grow-exit {
+      border: 2px solid indianred;
+      transform: scale(1.2);
+    }
+    .square.grow-enter {
+      animation: grow 300ms ease-in-out;
+    }
+    .square.grow-exit {
+      animation: shrink 300ms ease-in-out;
+    }
+
+    @keyframes grow {
+      0% {
+        transform: scale(0.9);
+      }
+      85% {
+        transform: scale(1.25);
+      }
+      100% {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes shrink {
+      0% {
+        transform: scale(1.2);
+      }
+      85% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    #one {
+      background-color: darkseagreen;
+    }
+    #two {
+      background-color: rebeccapurple;
+    }
+    #three {
+      background-color: cadetblue;
+    }
+    #four {
+      background-color: beige;
+    }
+  </style>
+</head>
+<body>
+  <script src="node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+  <script src="animation-binding.js"></script>
+
+  <h1>Knockout Animation Example</h1>
+
+  <h2>Click => <a href="" data-bind="text: number, click: function() { number(number() + 1) }"></a></h2>
+
+  <div class="squares">
+    <div class="square" id="one" data-bind="animation: { class: 'grow', when: number() % 2 === 0 }, text: number() % 2"></div>
+    <div class="square" id="two" data-bind="animation: { class: 'grow', when: number() % 3 === 0 }, text: number() % 3"></div>
+    <div class="square" id="three" data-bind="animation: { class: 'grow', when: number() % 4 === 0 }, text: number() % 4"></div>
+    <div class="square" id="four" data-bind="animation: { class: 'grow', when: number() % 5 === 0 }, text: number() % 5"></div>
+  </div>
+
+  <script>
+    ko.applyBindings({
+      number: ko.observable(1)
+    })
+
+    var squares = document.querySelector('div.squares')
+    squares.addEventListener('animationend', function(e) {
+      console.log('animationend - ' + e.target.id)
+    })
+
+    squares.addEventListener('animationstart', function(e) {
+      console.log('animationstart - ' + e.target.id)
+    })
+  </script>
+</html>
+
