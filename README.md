@@ -4,7 +4,7 @@
 
 [![Build Status](https://secure.travis-ci.org/nathanboktae/knockout-css3-animation.png)](http://travis-ci.org/nathanboktae/knockout-css3-animation)
 
-[![SauceLabs Test Status](https://saucelabs.com/browser-matrix/knockout-css3-animation.svg)](https://saucelabs.com/u/ko-css3-animation)
+[![SauceLabs Test Status](https://saucelabs.com/browser-matrix/ko-css3-animation.svg)](https://saucelabs.com/u/ko-css3-animation)
 
 ### Options
 

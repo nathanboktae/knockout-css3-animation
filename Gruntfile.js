@@ -16,26 +16,30 @@ module.exports = function(grunt) {
           build: process.env.TRAVIS_JOB_ID || 0,
           concurrency: 3,
           browsers: [{
-            browserName:"iphone",
-            platform: "OS X 10.10",
-            version: "7.1"
-          }, {
-            browserName:"iphone",
-            platform: "OS X 10.10",
-            version: "8.2"
-          }, {
-            browserName:"safari",
-            version: "8"
-          }, {
-            browserName:"android",
-            platform: "Linux",
-            version: "4.0"
-          }, {
+          //   browserName:"iphone",
+          //   platform: "OS X 10.10",
+          //   version: "7.1"
+          // }, {
+          //   browserName:"iphone",
+          //   platform: "OS X 10.10",
+          //   version: "8.2"
+          // }, {
+          //   browserName:"safari",
+          //   version: "8"
+          // }, {
+          //   browserName:"android",
+          //   platform: "Linux",
+          //   version: "4.0"
+          // }, {
             browserName: 'googlechrome',
             platform: 'win8'
           }, {
             browserName: 'firefox',
             platform: 'WIN7',
+          },{
+            browserName: 'internet explorer',
+            platform: 'WIN7',
+            version: '10'
           },{
             browserName: 'internet explorer',
             platform: 'WIN8.1',
