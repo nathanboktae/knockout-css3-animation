@@ -6,6 +6,10 @@
 
 [![SauceLabs Test Status](https://saucelabs.com/browser-matrix/ko-css3-animation.svg)](https://saucelabs.com/u/ko-css3-animation)
 
+### Example
+
+[Live Example on CodePen](http://codepen.io/nathanboktae/pen/LpzYxd)
+
 ### Options
 
 - `class`: The class name to toggle on and off. This will be immediately toggled on and off, so you likely will want to have some similar styles between your `exit` class and the main class.
