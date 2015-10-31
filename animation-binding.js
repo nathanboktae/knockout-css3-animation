@@ -15,7 +15,7 @@
 
   ko.bindingHandlers.animation = {
     init: function(element, valueAccessor) {
-      var opts = valueAccessor()
+      var opts = valueAccessor(),
           enterClass = opts.enter || opts.class + '-enter',
           exitClass = opts.exit || opts.class + '-exit',
           inital = true
