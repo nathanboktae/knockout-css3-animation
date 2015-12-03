@@ -18,7 +18,8 @@
       var opts = valueAccessor(),
           enterClass = opts.enter || opts.class + '-enter',
           exitClass = opts.exit || opts.class + '-exit',
-          inital = true
+          animateInitially = ko.unwrap(opts.initial),
+          initial = true
 
       element.addEventListener(eventName, function() {
         element.classList.remove(enterClass)
@@ -28,22 +29,19 @@
       ko.computed(function() {
         var on = !!ko.unwrap(valueAccessor().when)
 
-        if (inital) {
-          inital = false
+        if (element.classList.contains(opts.class) !== on || initial) {
           element.classList[on ? 'add' : 'remove'](opts.class)
-          return
-        }
-
-        if (element.classList.contains(opts.class) !== on) {
-          element.classList[on ? 'add' : 'remove'](opts.class)
-          if (on) {
-            element.classList.add(enterClass)
-            element.classList.remove(exitClass)
-          } else {
-            element.classList.remove(enterClass)
-            element.classList.add(exitClass)
+          if (!initial || animateInitially) {
+            if (on) {
+              element.classList.add(enterClass)
+              element.classList.remove(exitClass)
+            } else {
+              element.classList.remove(enterClass)
+              element.classList.add(exitClass)
+            }
           }
         }
+        initial = false
       }, null, { disposeWhenNodeIsRemoved: element })
     }
   }

@@ -16,6 +16,7 @@
 - `when`: Some truthy/falsy condition that determines if the `class` is on or off. Can be an observable or any expression with observables behind it.
 - `enter`: (optional) Class to set when entering. Defaults to `${class}-enter`
 - `exit`: (optional) Class to set when exiting. Defaults to `${class}-exit`
+- `initial`: (optional) Set to true if you want an animation on initialization. Defaults to false.
 
 ### Installation
 

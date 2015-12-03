@@ -63,9 +63,19 @@ describe('knockout css3 animation', function() {
     testEl.should.have.class('fade')
   })
 
-  it('should not add an enter or exit class on first render', function() {
+  it('should not add an enter or exit class on first render by default', function() {
     testSetup()
     testEl.should.not.have.class('fade-exit').and.class('fade-enter')
+  })
+
+  it('should add an enter class on first render if initial is true', function() {
+    testSetup('class: "fade", when: toggle, initial: true', true)
+    testEl.should.have.class('fade-enter')
+  })
+
+  it('should add an exit class on first render if initial is true', function() {
+    testSetup('class: "fade", when: toggle, initial: true', false)
+    testEl.should.have.class('fade-exit')
   })
 
   it('should remove the entering class after the animation is finished', function(done) {
